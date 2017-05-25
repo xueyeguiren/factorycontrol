@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- SpringMVC 环境搭建第三步 在 spitter-servlet.xml中配置静态资源访问路径、在 spitter-servlet.xml中配开启注解驱动 -->
+<!-- 添加mvc命名空间 -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:mvc="http://www.springframework.org/schema/mvc" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-4.2.xsd 
+	http://www.springframework.org/schema/mvc 
+	http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd 
+	http://www.springframework.org/schema/context 
+	http://www.springframework.org/schema/context/spring-context-4.2.xsd ">
+	<!-- 定义静态资源访问路径：静态资源请求不通过DispatcherServlet 处理 -->
+	<mvc:default-servlet-handler />
+	<mvc:resources mapping="/style/**"   location="/style/"  />
+	<mvc:resources mapping="/page/**"    location="/page/"  />
+	<!--
+	<mvc:resources location="/jsp/pages/admins/aa/" mapping="/aaa/**" />
+	-->
+	<!-- 开启SpringMVC注解驱动 -->
+	<mvc:annotation-driven >
+	<!-- 指定加入编码转换器 -处理ajax中文乱码-->
+	<mvc:message-converters register-defaults="true">
+			<bean class="org.springframework.http.converter.StringHttpMessageConverter">
+				<property name="supportedMediaTypes" value="text/plain;charset=UTF-8" />
+			</bean>
+		</mvc:message-converters>	
+	</mvc:annotation-driven>
+	<!-- SpringMVC 环境搭建第四步 在spitter-servlet.xml中配置配置自动扫描装载-->
+	<!-- 开启自动扫描：
+		注意要添加 ，
+		xmlns:context="http://www.springframework.org/schema/context" 
+		xsi:schemaLocation中添加
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context-4.2.xsd 
+		并确保每一句后有一个空格
+	-->
+	<context:component-scan base-package="com.bodawb.factorycontrol.jijia.controller"/>
+	
+	<!-- SpringMVC 环境搭建第五步 配置视图模式匹配 -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	<!-- /WEB-INF/jsp/ -->
+		<property name="prefix" value="/page/"/>
+		<property name="suffix" value=".jsp"></property>
+	</bean>
+</beans>  

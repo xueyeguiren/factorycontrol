@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bodawb.factorycontrol.jijia.dao.LocationMapper">
+  <resultMap id="BaseResultMap" type="com.bodawb.factorycontrol.jijia.pojo.Location">
+    <id column="location_id" jdbcType="INTEGER" property="locationId" />
+    <result column="locationname" jdbcType="VARCHAR" property="locationname" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    location_id, locationname
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from location
+    where location_id = #{locationId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from location
+    where location_id = #{locationId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.bodawb.factorycontrol.jijia.pojo.Location">
+    insert into location (location_id, locationname)
+    values (#{locationId,jdbcType=INTEGER}, #{locationname,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bodawb.factorycontrol.jijia.pojo.Location">
+    insert into location
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="locationId != null">
+        location_id,
+      </if>
+      <if test="locationname != null">
+        locationname,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="locationId != null">
+        #{locationId,jdbcType=INTEGER},
+      </if>
+      <if test="locationname != null">
+        #{locationname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bodawb.factorycontrol.jijia.pojo.Location">
+    update location
+    <set>
+      <if test="locationname != null">
+        locationname = #{locationname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where location_id = #{locationId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bodawb.factorycontrol.jijia.pojo.Location">
+    update location
+    set locationname = #{locationname,jdbcType=VARCHAR}
+    where location_id = #{locationId,jdbcType=INTEGER}
+  </update>
+</mapper>

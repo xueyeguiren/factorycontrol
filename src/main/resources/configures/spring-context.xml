@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd 
+        http://www.springframework.org/schema/tool 
+        http://www.springframework.org/schema/tool/spring-tool-4.3.xsd 
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context-4.2.xsd 
+        http://www.springframework.org/schema/tx 
+        http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+
+	<description>spring Configuration</description>
+	
+	<!-- 加载配置文件 -->
+	<!-- <context:property-placeholder  ignore-resource-not-found="true" location="classpath:properties/*.properties" />
+                                  
+	使用Annotation自动注册Bean，解决事物失效问题：在主容器中不扫描@Controller注解，在SpringMvc中只扫描@Controller注解。 
+	<context:component-scan base-package="com.boda.service">base-package 如果多个，用“,”分隔
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>过滤其中这四个注解中的一个
+	</context:component-scan>
+	 -->
+
+	<!-- spring事务-->
+	<import resource="classpath:configures/spring-transaction.xml" />
+	
+	<!-- 持久层框架MYBATIS:配置文件引入 -->
+	<import resource="classpath:configures/spring-mybatis.xml" />
+	
+	<!-- 验证码引入 -->
+	<import resource="classpath:configures/spring-kaptcha.xml" />
+	
+	<!-- 缓存框架 -->
+	<import resource="classpath:configures/spring-ehcache.xml" />
+	
+	<!-- shiro权限-->
+    <import resource="classpath:configures/spring-shiro.xml" />
+	
+</beans>
