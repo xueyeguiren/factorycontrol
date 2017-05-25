@@ -21,7 +21,7 @@
 	</bean>
 
 	<bean id="shiroDbRealm" class="com.bodawb.factorycontrol.jijia.shiro.SystemAuthorizingRealm" >
-	    <!--<property name="credentialsMatcher" ref="hashedCredentialsMatcher" />  -->
+	    <property name="credentialsMatcher" ref="hashedCredentialsMatcher" />
 	</bean>
 
     <!-- 记住密码Cookie -->
@@ -55,8 +55,9 @@
 					authc 需要认证
 					user  验证通过或RememberMe登录的都可以
 				-->
-				/page/** = user
 				/user/login =anon
+				/page/fail.jsp =anon
+				/page/** = user
 				<!--静态资源文件-->
 				/style/** =anon
 				/video/** =anon
@@ -104,7 +105,7 @@
 		<!-- storedCredentialsHexEncoded默认是true,此时用的是密码加密用的是Hex编码;false时用Base64编码 -->
 		<property name="storedCredentialsHexEncoded" value="true" />
 		<!-- 设置hashIterations属性来修改默认加密迭代次数:生成Hash值的迭代次数 -->
-		<property name="hashIterations" value="6" />
+		<property name="hashIterations" value="1" />
 	</bean>
 
 

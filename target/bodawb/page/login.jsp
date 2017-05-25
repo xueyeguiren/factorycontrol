@@ -61,7 +61,7 @@
 
 <div id="win" class="beg-login-box">
     <header>
-        <h1>后台管理</h1>
+        <h1>页面登陆</h1>
     </header>
 
     <div class="beg-login-main">
@@ -97,7 +97,7 @@
         </form>
     </div>
     <footer>
-        <p>勃达微波自动售货机</p>
+        <p>＠BodawbAutoTeam</p>
     </footer>
 </div>
 
